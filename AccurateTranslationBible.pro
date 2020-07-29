@@ -19,14 +19,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     Adjutants/Data.cpp \
     Adjutants/FileWorker.cpp \
-    Content/Content.cpp \
+    Tabs/Analysis.cpp \
+    Tabs/AnalysisWorker.cpp \
+    Tabs/Content.cpp \
+    Tabs/Translation.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     Adjutants/Data.h \
     Adjutants/FileWorker.h \
-    Content/Content.h \
+    Tabs/Analysis.h \
+    Tabs/AnalysisWorker.h \
+    Tabs/Content.h \
+    Tabs/Translation.h \
     mainwindow.h
 
 FORMS += \
@@ -40,4 +46,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 INCLUDEPATH += \
     Adjutants \
-    Content
+    Tabs

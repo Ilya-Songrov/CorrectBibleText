@@ -1,6 +1,6 @@
 #include "Content.h"
 
-#ifdef QT_DEBUG
+
 QNetworkAccessManager Content::mngr;
 
 void Content::generateContent_Photos()
@@ -231,7 +231,7 @@ void Content::getVectorVersesAllBible(QVector<QPair<QString, QString> > *vecPair
         for (int varChapter = 0; varChapter < arrChapters.size(); ++varChapter) {
             QJsonArray arrVerses = arrChapters.at(varChapter).toArray();
             for (int varVerse = 0; varVerse < arrVerses.size(); ++varVerse) {
-                vecPair->append(qMakePair(QString("%1 %2:%3").arg(abbrev).arg(varChapter).arg(varVerse),
+                vecPair->append(qMakePair(QString("%1 %2:%3").arg(abbrev).arg(varChapter + 1).arg(varVerse + 1),
                                           arrVerses.at(varVerse).toString()));
             }
         }
@@ -876,7 +876,6 @@ QString Content::getAbbrev(const int index, const Content::Standard requiredStan
     }
     return vecAbbrevNew.at(getIndexBook(index, BibleEnums::New_Testament, EasternSynodal, Western));
 }
-#endif
 
 QStringList Content::getListFileInDirectory(const QString &dir)
 {
@@ -1043,7 +1042,6 @@ QString Content::getNameFamilyBooks(const Content::FamilyBooks familyBooks, cons
     return family_books_ru;
 }
 
-#ifdef QT_DEBUG
 void Content::getOnlineBookList()
 {
     const QString url { "https://api.bibleonline.ru/booklist" };
@@ -1167,7 +1165,7 @@ void Content::sendGetRequest(const QString &urlStr, const QByteArray &paramJson,
 
 void Content::slotSSLErrors(QNetworkReply *reply, const QList<QSslError> &errors)
 {
-    qDebug() << "error camera: " << errors << Qt::endl;
+    qDebug() << "QSslError: " << errors << Qt::endl;
     reply->ignoreSslErrors(errors);
     QObject::disconnect(&mngr, &QNetworkAccessManager::sslErrors, nullptr, nullptr);
 }
@@ -1190,5 +1188,4 @@ void Content::slotGetReply(QNetworkReply *reply)
     }
     FileWorker::writeFileJson(doc, Path::tempJson);
 }
-#endif
 
