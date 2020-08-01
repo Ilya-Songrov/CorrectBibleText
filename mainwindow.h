@@ -3,9 +3,9 @@
 #include <QMainWindow>
 #include <QMessageBox>
 
-#include "Content.h"
+#include "Correct.h"
 #include "Analysis.h"
-#include "Translation.h"
+#include "Content.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,16 +15,15 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-    Translation *translation;
+    Correct *correct;
     Analysis *analysis;
+    Content *content;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
     void slotTabBarChanged(int index);
-    void on_pushButtonGenerateAllContent_clicked();
-    void on_pushButtonRemoveAllContent_clicked();
 
 private:
     void setSettings();

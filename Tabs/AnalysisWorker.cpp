@@ -2,12 +2,21 @@
 
 AnalysisWorker::AnalysisWorker(QObject *parent) : QObject(parent)
 {
-    Content::getVectorVersesAllBible(&vecPairVerses, Content::ProviderContent::GETBIBLE_NET);
+    ContentWorker::getVectorVersesAllBible(&vecPairVerses, ContentWorker::ProviderContent::GETBIBLE_NET);
     Q_ASSERT(vecPairVerses.size() > 0);
 }
 
 void AnalysisWorker::start(QUrl url)
 {
+#ifdef QT_DEBUG
+    QByteArray arr;
+    FileWorker::readFile(&arr, "/media/songrov/1478E91378E8F500/IlyaFolder/Songrov_Ilya/Programming/QtProjects/"
+                               "CorrectBibleText/CorrectBibleText/Resource/testBibile.txt");
+    strReply = arr;
+    parseReply();
+    emit analysisIsFinished();
+    return;
+#endif
     if (!url.isLocalFile()) {
         vecUrls.append(url.toString());
         requestAllUrls();
@@ -36,6 +45,7 @@ void AnalysisWorker::start(QUrl url)
         lineArr.remove(lineArr.size() - 1, lineArr.back() == '\n' ? 1 : 0);
         vecUrls.append(lineArr);
     }
+    file.close();
     requestAllUrls();
 }
 

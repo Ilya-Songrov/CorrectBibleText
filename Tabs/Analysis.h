@@ -3,27 +3,34 @@
 #include <QObject>
 #include <QThread>
 
+#include "TabBase.h"
+#include "Dialogs/DialogSettingsAnalysis.h"
 #include "AnalysisWorker.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class Analysis : public QObject
+class Analysis : public TabBase
 {
     Q_OBJECT
 
     QThread threadAnalyze;
     QStandardItemModel *model;
     Ui::MainWindow *ui;
+    QString fileAllBible;
+    QString fileUrls;
+    QString webTextCodec;
+    QString fileOutputCorrect;
 public:
     explicit Analysis(Ui::MainWindow *ui, QObject *parent = nullptr);
     ~Analysis();
 
-public slots:
-    void createConnects();
+protected:
+    virtual void createConnects();
 
 private slots:
+    void setSettingsAnalysis();
     void startClicked();
     void refreshModel(QList<QStandardItem *> listItems);
     void refreshInfo(int quantityUrls, QString foundVerses);

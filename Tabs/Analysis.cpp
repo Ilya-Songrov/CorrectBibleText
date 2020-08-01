@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 Analysis::Analysis(Ui::MainWindow *ui, QObject *parent) :
-    QObject(parent)
+    TabBase(parent)
   , model(new QStandardItemModel)
   , ui(ui)
 {
@@ -27,12 +27,34 @@ void Analysis::createConnects()
     connect(this, &Analysis::startWorker, analysisWorker, &AnalysisWorker::start);
     connect(ui->listViewAnalysis, &QListView::clicked, this, &Analysis::onClickedListView);
     connect(ui->pushButtonStartAnalysis, &QPushButton::clicked, this, &Analysis::startClicked);
+    connect(ui->pushButtonSettingsAnalysis, &QPushButton::clicked, this, &Analysis::setSettingsAnalysis);
     threadAnalyze.start();
+}
+
+void Analysis::setSettingsAnalysis()
+{
+    DialogSettingsAnalysis dialogSettings;
+    if (dialogSettings.exec() == QDialog::Rejected) {
+        return;
+    }
+    fileAllBible = dialogSettings.getAllBibleFilePath();
+    fileUrls = dialogSettings.getFileUrls();
+    webTextCodec = dialogSettings.getWebTextCodec();
+    fileOutputCorrect = dialogSettings.getOutputFilePath();
 }
 
 void Analysis::startClicked()
 {
-    emit startWorker(QUrl::fromUserInput(ui->lineEditAnalysisUrl->text()));
+//    if (ui->lineEditAnalysisUrl->text().isEmpty()) {
+//        fileAllBible = QFileDialog::getOpenFileName();
+//        if (fileAllBible.isEmpty()) {
+//            QMessageBox::information(ui->listViewAnalysis, "", "Please enter url or file with urls");
+//            return;
+//        }
+//    }
+    const QUrl url = QUrl::fromUserInput(fileAllBible);
+    fileAllBible = url.isLocalFile() ? url.toString() : ""; // if input is url, we will not be able to use auto-merge
+    emit startWorker(url);
 }
 
 void Analysis::refreshModel(QList<QStandardItem *> listItems)
@@ -46,7 +68,7 @@ void Analysis::refreshModel(QList<QStandardItem *> listItems)
 
 void Analysis::refreshInfo(int quantityUrls, QString foundVerses)
 {
-    ui->labelAnalysis->setText(QString("Urls: %1; found verses: %2").arg(quantityUrls).arg(foundVerses));
+    ui->labelAnalysis->setText(QString("Remaining urls: %1\nFound verses: %2").arg(quantityUrls).arg(foundVerses));
 }
 
 void Analysis::onClickedListView()
@@ -56,11 +78,28 @@ void Analysis::onClickedListView()
 
 void Analysis::saveResult()
 {
-    QJsonObject objMain;
-    for (int var = 0; var < model->columnCount(); ++var) {
-        QStandardItem *item = model->item(0, var);
-        objMain.insert(item->text(), item->data(Qt::UserRole+1).toString());
+    QJsonArray arrMain;
+    QJsonObject objInfo
+    {
+        { "file_all_bible", fileAllBible },
+        { "file_correct",   fileOutputCorrect },
+        { "file_urls",      fileUrls },
+        { "web_text_codec", webTextCodec }
+    };
+    arrMain.append(objInfo);
+    for (int var = 0; var < model->rowCount(); ++var) {
+        QStandardItem *item = model->item(var, 0);
+        QJsonObject objVerse;
+        objVerse.insert("link", item->text());
+        objVerse.insert("correct", "");
+        objVerse.insert("not_correct", item->data(Qt::UserRole+1).toString());
+        arrMain.append(objVerse);
+#ifdef QT_DEBUG
+        if (var > 50) {
+            break;
+        }
+#endif
     }
-    FileWorker::writeFileJson(QJsonDocument(objMain), "/media/songrov/1478E91378E8F500/IlyaFolder/"
-            "Songrov_Ilya/Programming/QtProjects/AccurateTranslationBible/AccurateTranslationBible/Resource/ResultAnalysis.json");
+    FileWorker::writeFileJson(QJsonDocument(arrMain), "/media/songrov/1478E91378E8F500/IlyaFolder/"
+            "Songrov_Ilya/Programming/QtProjects/CorrectBibleText/CorrectBibleText/Resource/ResultAnalysis.json");
 }

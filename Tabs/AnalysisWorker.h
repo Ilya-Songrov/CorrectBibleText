@@ -8,7 +8,7 @@
 #include <QTextDocument>
 #include <QTextCodec>
 
-#include "Content.h"
+#include "ContentWorker.h"
 
 class AnalysisWorker : public QObject
 {

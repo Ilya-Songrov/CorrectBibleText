@@ -1,0 +1,191 @@
+{
+    "book_00": {
+        "abbrev": "Матф",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "Matthew",
+        "name_ru": "Матфея"
+    },
+    "book_01": {
+        "abbrev": "Марк",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "Mark",
+        "name_ru": "Марка"
+    },
+    "book_02": {
+        "abbrev": "Лук",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "Luke",
+        "name_ru": "Луки"
+    },
+    "book_03": {
+        "abbrev": "Иоан",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "John",
+        "name_ru": "Иоанна"
+    },
+    "book_04": {
+        "abbrev": "Деян",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "Acts",
+        "name_ru": "Деяния"
+    },
+    "book_05": {
+        "abbrev": "Иак",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "James",
+        "name_ru": "Иакова"
+    },
+    "book_06": {
+        "abbrev": "1 Пет",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "1 Peter",
+        "name_ru": "1 Петра"
+    },
+    "book_07": {
+        "abbrev": "2 Пет",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "2 Peter",
+        "name_ru": "2 Петра"
+    },
+    "book_08": {
+        "abbrev": "1 Иоан",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "1 Иоанна",
+        "name_ru": "1 Иоанна"
+    },
+    "book_09": {
+        "abbrev": "2 Иоан",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "2 Иоанна",
+        "name_ru": "2 Иоанна"
+    },
+    "book_10": {
+        "abbrev": "3 Иоан",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "3 Иоанна",
+        "name_ru": "3 Иоанна"
+    },
+    "book_11": {
+        "abbrev": "Иуд",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "Jude",
+        "name_ru": "Иуда"
+    },
+    "book_12": {
+        "abbrev": "Рим",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "Romans",
+        "name_ru": "Римлянам"
+    },
+    "book_13": {
+        "abbrev": "1 Кор",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "1 Corinthians",
+        "name_ru": "1 Коринфянам"
+    },
+    "book_14": {
+        "abbrev": "2 Кор",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "2 Corinthians",
+        "name_ru": "2 Коринфянам"
+    },
+    "book_15": {
+        "abbrev": "Гал",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "Galatians",
+        "name_ru": "Галатам"
+    },
+    "book_16": {
+        "abbrev": "Еф",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "Ephesians",
+        "name_ru": "Ефесянам"
+    },
+    "book_17": {
+        "abbrev": "Фил",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "Philippians",
+        "name_ru": "Филиппийцам"
+    },
+    "book_18": {
+        "abbrev": "Кол",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "Colossians",
+        "name_ru": "Колоссянам"
+    },
+    "book_19": {
+        "abbrev": "1 Фес",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "1 Thessalonians",
+        "name_ru": "1 Фессалоникийцам"
+    },
+    "book_20": {
+        "abbrev": "2 Фес",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "2 Thessalonians",
+        "name_ru": "2 Фессалоникийцам"
+    },
+    "book_21": {
+        "abbrev": "1 Тим",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "1 Timothy",
+        "name_ru": "1 Тимофею"
+    },
+    "book_22": {
+        "abbrev": "2 Тим",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "2 Timothy",
+        "name_ru": "2 Тимофею"
+    },
+    "book_23": {
+        "abbrev": "Тит",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "Titus",
+        "name_ru": "Титу"
+    },
+    "book_24": {
+        "abbrev": "Фил",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "Philemon",
+        "name_ru": "Филимону"
+    },
+    "book_25": {
+        "abbrev": "Евр",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "Hebrews",
+        "name_ru": "Евреям"
+    },
+    "book_26": {
+        "abbrev": "Откр",
+        "family_books_en": "Apocalypse",
+        "family_books_ru": "Пророческие",
+        "name_en": "Revelation",
+        "name_ru": "Откровение"
+    }
+}

@@ -20,15 +20,15 @@
       <property name="currentIndex">
        <number>1</number>
       </property>
-      <widget class="QWidget" name="tabTranslation">
+      <widget class="QWidget" name="tabCorrect">
        <attribute name="title">
-        <string>Translation</string>
+        <string>Correct</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="0" colspan="3">
+        <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="1">
-           <widget class="QPushButton" name="pushButtonLoad">
+           <widget class="QPushButton" name="pushButtonLoadCorrect">
             <property name="text">
              <string>&amp;load</string>
             </property>
@@ -43,31 +43,38 @@
           </item>
          </layout>
         </item>
-        <item row="1" column="0" rowspan="2">
-         <widget class="QListView" name="listViewTranslation"/>
-        </item>
-        <item row="1" column="1" colspan="2">
-         <widget class="QTextEdit" name="textEditVerse"/>
-        </item>
-        <item row="2" column="2">
-         <widget class="QPushButton" name="pushButtonSaveTranslation">
-          <property name="text">
-           <string>&amp;save</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <spacer name="horizontalSpacer_3">
+        <item row="1" column="0">
+         <widget class="QSplitter" name="splitter_2">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>254</width>
-            <height>17</height>
-           </size>
-          </property>
-         </spacer>
+          <widget class="QListView" name="listViewCorrect"/>
+          <widget class="QTextEdit" name="textEditCorrectVerse"/>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonSaveCorrect">
+            <property name="text">
+             <string>&amp;save</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -77,40 +84,17 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_6">
         <item row="1" column="0">
-         <widget class="QListView" name="listViewAnalysis"/>
+         <widget class="QSplitter" name="splitter">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <widget class="QListView" name="listViewAnalysis"/>
+          <widget class="QTextBrowser" name="textBrowserAnalysis"/>
+         </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QTextBrowser" name="textBrowserAnalysis"/>
-        </item>
-        <item row="2" column="0" colspan="2">
+        <item row="2" column="0">
          <layout class="QGridLayout" name="gridLayout_5">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Url or fileUrls:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" colspan="2">
-           <spacer name="horizontalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>378</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="2">
+          <item row="0" column="2">
            <widget class="QPushButton" name="pushButtonStartAnalysis">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
@@ -123,20 +107,42 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="2">
-           <widget class="QLineEdit" name="lineEditAnalysisUrl"/>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelAnalysis">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Status:</string>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="pushButtonSettingsAnalysis">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>settings</string>
+            </property>
+           </widget>
           </item>
          </layout>
-        </item>
-        <item row="0" column="0" colspan="2">
-         <widget class="QLabel" name="labelAnalysis">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="textInteractionFlags">
-           <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-          </property>
-         </widget>
         </item>
        </layout>
       </widget>
@@ -214,9 +220,39 @@ All Content</string>
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionExit_2"/>
+   </widget>
+   <widget class="QMenu" name="menuCorrect">
+    <property name="title">
+     <string>Correct</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuAnalysis">
+    <property name="title">
+     <string>Analysis</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuContent">
+    <property name="title">
+     <string>Content</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuCorrect"/>
+   <addaction name="menuAnalysis"/>
+   <addaction name="menuContent"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionExit_2">
    <property name="text">
     <string>Exit</string>
    </property>

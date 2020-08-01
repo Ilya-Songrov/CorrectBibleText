@@ -16,7 +16,7 @@ Q_ENUM_NS(Testament)  // register the enum in meta object data
 }
 
 namespace Path {
-const QString prefix = "../AccurateTranslationBible";
+const QString prefix = "../CorrectBibleText";
 
 const QString providerBibleTxtText_GETBIBLE  = prefix + "/TextBible_OfflineSources/Getbible_Net/Russian__Synodal_Translation_(1876)__synodal__LTR(getbible.net).txt";
 const QString providerBibleJsonText_BODRUK   = prefix + "/TextBible_OfflineSources/Bible_XML_and_JSON/bible-master/json/ru_synodal.json";
