@@ -100,6 +100,9 @@ void Analysis::saveResult()
         }
 #endif
     }
-    FileWorker::writeFileJson(QJsonDocument(arrMain), "/media/songrov/1478E91378E8F500/IlyaFolder/"
-            "Songrov_Ilya/Programming/QtProjects/CorrectBibleText/CorrectBibleText/Resource/ResultAnalysis.json");
+#ifdef QT_DEBUG
+    fileOutputCorrect = "/media/songrov/1478E91378E8F500/IlyaFolder/"
+                        "Songrov_Ilya/Programming/QtProjects/CorrectBibleText/CorrectBibleText/Resource/ResultAnalysis.json";
+#endif
+    FileWorker::writeFileJson(QJsonDocument(arrMain), fileOutputCorrect);
 }
