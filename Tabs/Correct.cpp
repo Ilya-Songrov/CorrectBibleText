@@ -76,6 +76,8 @@ void Correct::on_actionReset_fileCorrect_triggered()
 
 void Correct::on_actionMerge_fileCorrect_triggered()
 {
-
+    // dialog widget
+    CorrectWorker::mergeCorrectFile(pathFileCorrect, QString());
+    QMessageBox::information(ui->listViewCorrect, "", QString("The %1 file is already merged").arg(QFileInfo(pathFileCorrect).fileName()));
 }
 

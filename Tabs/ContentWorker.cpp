@@ -27,8 +27,8 @@ ContentWorker::ContentWorker()
     // AllBible file
     //    [
     //        {
-    //        "abbrev" : "abbrev"
-    //        "name" : "book"
+    //        "abbrev" : "Быт"
+    //        "book_index" : 0
     //        "chapters":
     //            [
     //                ["Verse 1", "Verse 2", "Verse 3", "..."],
