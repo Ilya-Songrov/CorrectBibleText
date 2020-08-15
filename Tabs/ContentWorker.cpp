@@ -56,16 +56,11 @@ void ContentWorker::removeAllContent()
     QFile::remove(Path::tempJson);
 }
 
-void ContentWorker::getVectorVersesAllBible(QVector<QPair<QString, QString> > *vecPair, const ContentWorker::ProviderContent provider)
+void ContentWorker::getVectorVersesAllBible(QVector<QPair<QString, QString> > *vecPair, const QString &pathFileAllBible)
 {
-    if (provider != ProviderContent::GETBIBLE_NET) {
-        qDebug() << "sorry, the functionality of this provider is not implemented((" << Qt::endl;
-    }
-
     QJsonDocument doc;
-    FileWorker::readFileJson(&doc, Path::fileAllBibleJsonText_GETBIBLE);
+    FileWorker::readFileJson(&doc, pathFileAllBible);
     QJsonArray arrMainBooks = doc.array();
-    qDebug() << "arrMain.size()" << arrMainBooks.size() << Qt::endl;
     Q_ASSERT(arrMainBooks.size() == BibleEnums::Old_Testament + BibleEnums::New_Testament);
 
     for (int var = 0; var < arrMainBooks.size(); ++var) {

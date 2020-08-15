@@ -2,12 +2,13 @@
 
 AnalysisWorker::AnalysisWorker(QObject *parent) : QObject(parent)
 {
-    ContentWorker::getVectorVersesAllBible(&vecPairVerses, ContentWorker::ProviderContent::GETBIBLE_NET);
-    Q_ASSERT(vecPairVerses.size() > 0);
+
 }
 
-void AnalysisWorker::start(QUrl url)
+void AnalysisWorker::start(const QUrl url, const QString fileAllBible, const QString webTextCodec)
 {
+    this->webTextCodec = webTextCodec;
+    readFileAllBible(fileAllBible);
 #ifdef QT_DEBUG
     QByteArray arr;
     FileWorker::readFile(&arr, "/media/songrov/1478E91378E8F500/IlyaFolder/Songrov_Ilya/Programming/QtProjects/"
@@ -47,6 +48,12 @@ void AnalysisWorker::start(QUrl url)
     }
     file.close();
     requestAllUrls();
+}
+
+void AnalysisWorker::readFileAllBible(const QString &fileAllBible)
+{
+    ContentWorker::getVectorVersesAllBible(&vecPairVerses, fileAllBible);
+    Q_ASSERT(vecPairVerses.size() > 0);
 }
 
 void AnalysisWorker::parseReply()
@@ -99,7 +106,7 @@ void AnalysisWorker::slotSSLErrors(QNetworkReply *reply, const QList<QSslError> 
 void AnalysisWorker::slotReplyAnalyze(QNetworkReply *reply)
 {
     QByteArray byteArr = reply->readAll();
-    QTextCodec* textCodec = QTextCodec::codecForName("Windows-1251");
+    QTextCodec* textCodec = QTextCodec::codecForName(webTextCodec.toLocal8Bit());
     strReply = textCodec->toUnicode(byteArr);
 
     QTextDocument doc;

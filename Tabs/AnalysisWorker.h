@@ -17,13 +17,15 @@ class AnalysisWorker : public QObject
     QVector<QPair<QString, QString> > vecPairVerses;
     QVector<QString> vecUrls;
     QString strReply;
+    QString webTextCodec;
 public:
     explicit AnalysisWorker(QObject *parent = nullptr);
 
 public slots:
-    void start(QUrl url);
+    void start(const QUrl url, const QString fileAllBible, const QString webTextCodec);
 
 private:
+    void readFileAllBible(const QString &fileAllBible);
     void parseReply();
 private slots:
     void requestAllUrls();

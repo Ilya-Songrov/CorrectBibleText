@@ -52,9 +52,13 @@ void Analysis::startClicked()
 //            return;
 //        }
 //    }
-    const QUrl url = QUrl::fromUserInput(fileAllBible);
-    fileAllBible = url.isLocalFile() ? url.toString() : ""; // if input is url, we will not be able to use auto-merge
-    emit startWorker(url);
+#ifdef QT_DEBUG
+    fileAllBible = Path::fileAllBibleJsonText_GETBIBLE;
+    webTextCodec = "Windows-1251";
+    fileUrls = "../CorrectBibleText/Resource/AllbibleSynodalMap_little.txt";
+    fileOutputCorrect = "../CorrectBibleText/Resource/ResultAnalysis.json";
+#endif
+    emit startWorker(fileUrls, fileAllBible, webTextCodec);
 }
 
 void Analysis::refreshModel(QList<QStandardItem *> listItems)
@@ -81,11 +85,12 @@ void Analysis::saveResult()
     QJsonArray arrMain;
     QJsonObject objInfo
     {
-        { "file_all_bible", fileAllBible },
-        { "file_correct",   fileOutputCorrect },
+        { "file_all_bible", QFileInfo(fileAllBible).absoluteFilePath() },
+        { "file_correct",   QFileInfo(fileOutputCorrect).absoluteFilePath() },
         { "file_urls",      fileUrls },
         { "web_text_codec", webTextCodec }
     };
+    qDebug() << "objInfo" << qPrintable(QJsonDocument(objInfo).toJson()) << Qt::endl;
     arrMain.append(objInfo);
     for (int var = 0; var < model->rowCount(); ++var) {
         QStandardItem *item = model->item(var, 0);
@@ -100,9 +105,10 @@ void Analysis::saveResult()
         }
 #endif
     }
-#ifdef QT_DEBUG
-    fileOutputCorrect = "/media/songrov/1478E91378E8F500/IlyaFolder/"
-                        "Songrov_Ilya/Programming/QtProjects/CorrectBibleText/CorrectBibleText/Resource/ResultAnalysis.json";
-#endif
     FileWorker::writeFileJson(QJsonDocument(arrMain), fileOutputCorrect);
+    QMessageBox::information(ui->listViewAnalysis, "", QString("The analysis is over. The result is written to the %1 file.").
+                                                                arg(QFileInfo(fileOutputCorrect).fileName()));
 }
+
+
+

@@ -20,7 +20,7 @@ void Correct::on_pushButtonLoadCorrect_clicked()
 #ifdef QT_DEBUG
     pathFileCorrect = "../CorrectBibleText/Resource/ResultAnalysis.json";
 #else
-    pathFileResult = QFileDialog::getOpenFileName();
+    pathFileCorrect = QFileDialog::getOpenFileName();
 #endif
     if (pathFileCorrect.isEmpty()) {
         return;
@@ -41,6 +41,7 @@ void Correct::on_pushButtonLoadCorrect_clicked()
 void Correct::on_pushButtonSaveCorrect_clicked()
 {
     if (pathFileCorrect.isEmpty()) {
+        QMessageBox::information(ui->listViewCorrect, "", "Nothing to save!");
         return;
     }
     QModelIndex currentIndex = ui->listViewCorrect->currentIndex();

@@ -38,6 +38,6 @@ private slots:
     void saveResult();
 
 signals:
-    void startWorker(QUrl url);
+    void startWorker(const QUrl url, const QString fileAllBible, const QString webTextCodec);
 };
 

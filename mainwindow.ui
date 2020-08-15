@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabCorrect">
        <attribute name="title">
@@ -35,7 +35,7 @@
            </widget>
           </item>
           <item row="0" column="0">
-           <widget class="QLineEdit" name="lineEditLoad">
+           <widget class="QLineEdit" name="lineEditLoadCorrect">
             <property name="placeholderText">
              <string>file://</string>
             </property>
@@ -230,6 +230,8 @@ All Content</string>
     <property name="title">
      <string>Correct</string>
     </property>
+    <addaction name="actionReset_fileCorrect"/>
+    <addaction name="actionAuto_marge_Correct_File"/>
    </widget>
    <widget class="QMenu" name="menuAnalysis">
     <property name="title">
@@ -255,6 +257,16 @@ All Content</string>
   <action name="actionExit_2">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionReset_fileCorrect">
+   <property name="text">
+    <string>Reset Correct File</string>
+   </property>
+  </action>
+  <action name="actionAuto_marge_Correct_File">
+   <property name="text">
+    <string>Auto-merge Correct File</string>
    </property>
   </action>
  </widget>

@@ -1,12 +1,12 @@
 [
     {
-        "file_all_bible": "",
-        "file_correct": "",
-        "file_urls": "",
-        "web_text_codec": ""
+        "file_all_bible": "/media/songrov/1478E91378E8F500/IlyaFolder/Songrov_Ilya/Programming/QtProjects/CorrectBibleText/CorrectBibleText/Resource/Content/AllBible_JsonText_GETBIBLE.json",
+        "file_correct": "/media/songrov/1478E91378E8F500/IlyaFolder/Songrov_Ilya/Programming/QtProjects/CorrectBibleText/CorrectBibleText/Resource/ResultAnalysis.json",
+        "file_urls": "../CorrectBibleText/Resource/AllbibleSynodalMap_little.txt",
+        "web_text_codec": "Windows-1251"
     },
     {
-        "correct": "",
+        "correct": "И сказал Бог: дабудет свет. И сталсвет.",
         "link": "Быт 1:3",
         "not_correct": "И сказал Бог: да будет свет. И сталсвет."
     },
@@ -21,7 +21,7 @@
         "not_correct": "И создал Бог зверей земных по роду их, и скот по роду его, и всехгадов земных по роду их. И увидел Бог, что это хорошо."
     },
     {
-        "correct": "",
+        "correct": "И сказал Бог: сотв орим человека по образу Нашему по подобию Нашему,и да владычествуют они над рыбами морскими, и над птицами небесными, и над скотом, и над всею землею, и над всеми гадами, пресмыкающимися по земле.",
         "link": "Быт 1:26",
         "not_correct": "И сказал Бог: сотворим человека по образу Нашему по подобию Нашему,и да владычествуют они над рыбами морскими, и над птицами небесными, и над скотом, и над всею землею, и над всеми гадами, пресмыкающимися по земле."
     },

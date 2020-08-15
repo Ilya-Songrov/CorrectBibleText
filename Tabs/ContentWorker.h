@@ -46,7 +46,7 @@ public:
 
     static void generateContentStandart(const ContentWorker::Standard requiredStandart, const ProviderContent providerContent);
     static void removeAllContent();
-    static void getVectorVersesAllBible(QVector<QPair<QString, QString> > *vecPair, const ProviderContent provider);
+    static void getVectorVersesAllBible(QVector<QPair<QString, QString> > *vecPair, const QString &pathFileAllBible);
 private:
     static QString getIndexBookStr(const int index);
     static QString getIndexBookStr(int index, const BibleEnums::Testament testament,
