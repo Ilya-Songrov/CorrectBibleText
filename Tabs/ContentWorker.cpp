@@ -4,6 +4,44 @@
 QNetworkAccessManager ContentWorker::mngr(nullptr);
 
 
+ContentWorker::ContentWorker()
+{
+    // Correct file
+    //    [
+    //        {
+    //            "file_all_bible": "",
+    //            "file_correct": "",
+    //            "file_urls": "",
+    //            "web_text_codec": ""
+    //        },
+    //        {
+    //            "correct": "",
+    //            "link": "Быт 1:3",
+    //            "not_correct": "И сказал Бог: да будет свет. И сталсвет."
+    //        },
+    //        {
+    //        ...
+    //        },
+    //    ]
+
+    // AllBible file
+    //    [
+    //        {
+    //        "abbrev" : "abbrev"
+    //        "name" : "book"
+    //        "chapters":
+    //            [
+    //                ["Verse 1", "Verse 2", "Verse 3", "..."],
+    //                ["Verse 1", "Verse 2", "Verse 3", "..."],
+    //                ["Verse 1", "Verse 2", "Verse 3", "..."]
+    //            ]
+    //        },
+    //        {
+    //        ...
+    //        },
+    //    ]
+}
+
 void ContentWorker::generateContentStandart(const ContentWorker::Standard requiredStandart, const ProviderContent providerContent)
 {
     testGetIndexBook();
@@ -75,21 +113,7 @@ void ContentWorker::getVectorVersesAllBible(QVector<QPair<QString, QString> > *v
             }
         }
     }
-    //    [
-    //        {
-    //        "abbrev" : "abbrev"
-    //        "name" : "book"
-    //        "chapters":
-    //            [
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."],
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."],
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."]
-    //            ]
-    //        },
-    //        {
-    //        ...
-    //        },
-    //    ]
+    // The structure of the AllBible file is described in the the ContentWorker constructor.
 }
 
 void ContentWorker::generateContent_Photos()
@@ -234,19 +258,7 @@ void ContentWorker::generateContent_Info(const QString &fileOld, const QString &
     FileWorker::writeFileJson(QJsonDocument(objOldTestament), fileOld);
     FileWorker::writeFileJson(QJsonDocument(objNewTestament), fileNew);
 
-    //    [
-    //        {
-    //        "chapters":
-    //            [
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."],
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."],
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."]
-    //            ]
-    //        },
-    //        {
-    //        ...
-    //        },
-    //    ]
+    // The structure of the AllBible file is described in the the ContentWorker constructor.
 }
 
 void ContentWorker::generateContent_Info_BODRUK(const ContentWorker::Standard requiredStandart)
@@ -340,21 +352,7 @@ void ContentWorker::generateContent_Info_BODRUK(const ContentWorker::Standard re
     FileWorker::writeFileJson(QJsonDocument(objOldTestament), Path::fileContent_Old_Testament_Info_BODRUK);
     FileWorker::writeFileJson(QJsonDocument(objNewTestament), Path::fileContent_New_Testament_Info_BODRUK);
 
-    //    [
-    //        {
-    //        "abbrev" : "abbrev"
-    //        "name" : "book"
-    //        "chapters":
-    //            [
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."],
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."],
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."]
-    //            ]
-    //        },
-    //        {
-    //        ...
-    //        },
-    //    ]
+    // The structure of the AllBible file is described in the the ContentWorker constructor.
 }
 
 void ContentWorker::generateContent_Info_ONLINE(const ContentWorker::Standard requiredStandart)
@@ -631,21 +629,7 @@ void ContentWorker::generateContent_JsonText(const QString &pathFrom, const QStr
         }
     }
 
-    //    [
-    //        {
-    //        "abbrev" : "abbrev"
-    //        "name" : "book"
-    //        "chapters":
-    //            [
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."],
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."],
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."]
-    //            ]
-    //        },
-    //        {
-    //        ...
-    //        },
-    //    ]
+    // The structure of the AllBible file is described in the the ContentWorker constructor.
 }
 
 void ContentWorker::generateContent_JsonText_BODRUK(const Standard requiredStandart)
@@ -670,21 +654,7 @@ void ContentWorker::generateContent_JsonText_BODRUK(const Standard requiredStand
         }
     }
 
-    //    [
-    //        {
-    //        "abbrev" : "abbrev"
-    //        "name" : "book"
-    //        "chapters":
-    //            [
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."],
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."],
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."]
-    //            ]
-    //        },
-    //        {
-    //        ...
-    //        },
-    //    ]
+    // The structure of the AllBible file is described in the the ContentWorker constructor.
 }
 
 void ContentWorker::generateContent_JsonText_ONLINE(const ContentWorker::Standard requiredStandart)
@@ -1128,21 +1098,7 @@ void ContentWorker::generateJsonFromTxt_GETBIBLE()
 
     FileWorker::writeFileJson(QJsonDocument(arrMain), Path::fileAllBibleJsonText_GETBIBLE);
 
-    //    [
-    //        {
-    //        "abbrev" : "Быт"
-    //        "book_index" : 0
-    //        "chapters":
-    //            [
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."],
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."],
-    //                ["Verse 1", "Verse 2", "Verse 3", "..."]
-    //            ]
-    //        },
-    //        {
-    //        ...
-    //        },
-    //    ]
+    // The structure of the AllBible file is described in the the ContentWorker constructor.
 }
 
 void ContentWorker::sendGetRequest(const QString &urlStr, const QByteArray &paramJson, std::function<void (QNetworkReply *)> funcSlotReply)

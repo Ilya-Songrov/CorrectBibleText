@@ -44,6 +44,7 @@ public:
         EasternSynodal,
     };
 
+    explicit ContentWorker();
     static void generateContentStandart(const ContentWorker::Standard requiredStandart, const ProviderContent providerContent);
     static void removeAllContent();
     static void getVectorVersesAllBible(QVector<QPair<QString, QString> > *vecPair, const QString &pathFileAllBible);

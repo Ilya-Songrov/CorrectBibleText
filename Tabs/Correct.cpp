@@ -13,6 +13,8 @@ void Correct::createConnects()
     connect(ui->pushButtonLoadCorrect, &QPushButton::clicked, this, &Correct::on_pushButtonLoadCorrect_clicked);
     connect(ui->pushButtonSaveCorrect, &QPushButton::clicked, this, &Correct::on_pushButtonSaveCorrect_clicked);
     connect(ui->listViewCorrect, &QListView::clicked, this, &Correct::onClickedViewCorrect);
+    connect(ui->actionReset_Correct_File, &QAction::triggered, this, &Correct::on_actionReset_fileCorrect_triggered);
+    connect(ui->actionMerge_Correct_File, &QAction::triggered, this, &Correct::on_actionMerge_fileCorrect_triggered);
 }
 
 void Correct::on_pushButtonLoadCorrect_clicked()
@@ -26,7 +28,7 @@ void Correct::on_pushButtonLoadCorrect_clicked()
         return;
     }
     QVector<QPair<QString, QString> > vecPair;
-    CorrectWorker::readFileCorrect(&vecPair, pathFileCorrect);
+    CorrectWorker::readCorrectFile(&vecPair, pathFileCorrect);
     Q_ASSERT(vecPair.size() > 0);
 
     QStandardItemModel *model = new QStandardItemModel(ui->listViewCorrect);
@@ -59,5 +61,21 @@ void Correct::on_pushButtonSaveCorrect_clicked()
 void Correct::onClickedViewCorrect()
 {
     ui->textEditCorrectVerse->setText(ui->listViewCorrect->currentIndex().data(Qt::UserRole+1).toString());
+}
+
+void Correct::on_actionReset_fileCorrect_triggered()
+{
+    if (pathFileCorrect.isEmpty()) {
+        QMessageBox::information(ui->listViewCorrect, "", "Please, load correct file");
+        return;
+    }
+    CorrectWorker::resetCorrectFile(pathFileCorrect);
+    on_pushButtonLoadCorrect_clicked();
+    QMessageBox::information(ui->listViewCorrect, "", QString("The %1 file is already reseted").arg(QFileInfo(pathFileCorrect).fileName()));
+}
+
+void Correct::on_actionMerge_fileCorrect_triggered()
+{
+
 }
 

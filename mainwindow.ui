@@ -37,7 +37,7 @@
           <item row="0" column="0">
            <widget class="QLineEdit" name="lineEditLoadCorrect">
             <property name="placeholderText">
-             <string>file://</string>
+             <string>Correct_File.json</string>
             </property>
            </widget>
           </item>
@@ -230,8 +230,8 @@ All Content</string>
     <property name="title">
      <string>Correct</string>
     </property>
-    <addaction name="actionReset_fileCorrect"/>
-    <addaction name="actionAuto_marge_Correct_File"/>
+    <addaction name="actionReset_Correct_File"/>
+    <addaction name="actionMerge_Correct_File"/>
    </widget>
    <widget class="QMenu" name="menuAnalysis">
     <property name="title">
@@ -259,14 +259,14 @@ All Content</string>
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionReset_fileCorrect">
+  <action name="actionReset_Correct_File">
    <property name="text">
     <string>Reset Correct File</string>
    </property>
   </action>
-  <action name="actionAuto_marge_Correct_File">
+  <action name="actionMerge_Correct_File">
    <property name="text">
-    <string>Auto-merge Correct File</string>
+    <string>Merge Correct File</string>
    </property>
   </action>
  </widget>

@@ -26,6 +26,8 @@ public slots:
     void on_pushButtonLoadCorrect_clicked();
     void on_pushButtonSaveCorrect_clicked();
     void onClickedViewCorrect();
+    void on_actionReset_fileCorrect_triggered();
+    void on_actionMerge_fileCorrect_triggered();
 
 };
 
