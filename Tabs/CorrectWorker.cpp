@@ -62,16 +62,8 @@ void CorrectWorker::mergeCorrectFile(QString pathCorrectFile, QString pathAllBib
     QJsonDocument docCorrect;
     FileWorker::readFileJson(&docCorrect, pathCorrectFile);
     QJsonArray arrMainCorrect = docCorrect.array();
-    const QJsonObject objInfo = arrMainCorrect.at(0).toObject();
-    if (pathAllBibleFile.isEmpty()) {
-        pathAllBibleFile = objInfo.value("file_all_bible").toString();
-    }
 
     QJsonDocument docAllBible;
-#ifdef QT_DEBUG
-    pathAllBibleFile = "/media/songrov/1478E91378E8F500/IlyaFolder/Songrov_Ilya/Programming/QtProjects/"
-                       "CorrectBibleText/CorrectBibleText/Resource/Content/Copy_AllBible_JsonText_GETBIBLE.json";
-#endif
     FileWorker::readFileJson(&docAllBible, pathAllBibleFile);
     if (docAllBible.isEmpty()) {
         qDebug() << QString("Error, %1 file is empty").arg(QFileInfo(pathAllBibleFile).fileName()) << Qt::endl;
@@ -80,7 +72,7 @@ void CorrectWorker::mergeCorrectFile(QString pathCorrectFile, QString pathAllBib
     QJsonArray arrMainAllBible = docAllBible.array();
     Q_ASSERT(arrMainAllBible.size() > 0);
 
-    for (const QJsonValueRef &value: arrMainCorrect) {
+    for (const QJsonValue &value: arrMainCorrect) {
         QJsonObject objVerse = value.toObject();
         QString strCorrect = objVerse.value("correct").toString();
         if (!strCorrect.isEmpty()) {
@@ -95,12 +87,21 @@ void CorrectWorker::mergeCorrectFile(QString pathCorrectFile, QString pathAllBib
                 QJsonArray arrCorrectChapter = arrChapters[chapter].toArray();
                 arrCorrectChapter[verse] = QJsonValue(strCorrect);
                 arrChapters[chapter] = arrCorrectChapter;
-                objBook["cahpters"] = arrChapters;
+                objBook["chapters"] = arrChapters;
                 *itBook = objBook;
             }
         }
     }
     FileWorker::writeFileJson(QJsonDocument(arrMainAllBible), pathAllBibleFile);
+}
+
+QString CorrectWorker::getPathAllBible(const QString &pathCorrectFile)
+{
+    QJsonDocument docCorrect;
+    FileWorker::readFileJson(&docCorrect, pathCorrectFile);
+    QJsonArray arrMainCorrect = docCorrect.array();
+    const QJsonObject objInfo = arrMainCorrect.at(0).toObject();
+    return objInfo.value("file_all_bible").toString();
 }
 
 void CorrectWorker::parseLink(QString *abbrev, int *chapter, int *verse, const QString &link)

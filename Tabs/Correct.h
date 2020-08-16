@@ -5,6 +5,7 @@
 
 #include "TabBase.h"
 #include "CorrectWorker.h"
+#include "DialogMergeCorrectFile.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,7 +16,7 @@ class Correct : public TabBase
     Q_OBJECT
 
     Ui::MainWindow *ui;
-    QString pathFileCorrect;
+    QString pathCorrectFile;
 public:
     explicit Correct(Ui::MainWindow *ui, QObject *parent = nullptr);
 
@@ -26,8 +27,8 @@ public slots:
     void on_pushButtonLoadCorrect_clicked();
     void on_pushButtonSaveCorrect_clicked();
     void onClickedViewCorrect();
-    void on_actionReset_fileCorrect_triggered();
-    void on_actionMerge_fileCorrect_triggered();
+    void on_actionReset_CorrectFile_triggered();
+    void on_actionMerge_CorrectFile_triggered();
 
 };
 

@@ -20,6 +20,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     Adjutants/Data.cpp \
     Adjutants/FileWorker.cpp \
+    Dialogs/DialogMergeCorrectFile.cpp \
     Dialogs/DialogSettingsAnalysis.cpp \
     Tabs/Analysis.cpp \
     Tabs/AnalysisWorker.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
 HEADERS += \
     Adjutants/Data.h \
     Adjutants/FileWorker.h \
+    Dialogs/DialogMergeCorrectFile.h \
     Dialogs/DialogSettingsAnalysis.h \
     Tabs/Analysis.h \
     Tabs/AnalysisWorker.h \
@@ -45,6 +47,7 @@ HEADERS += \
     mainwindow.h
 
 FORMS += \
+    Dialogs/DialogMergeCorrectFile.ui \
     Dialogs/DialogSettingsAnalysis.ui \
     mainwindow.ui
 
@@ -56,4 +59,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 INCLUDEPATH += \
     Adjutants \
-    Tabs
+    Tabs \
+    Dialogs \
