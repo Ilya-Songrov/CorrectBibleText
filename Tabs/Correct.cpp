@@ -22,22 +22,13 @@ void Correct::on_pushButtonLoadCorrect_clicked()
 #ifdef QT_DEBUG
     pathCorrectFile = "../CorrectBibleText/Resource/ResultAnalysis.json";
 #else
-    pathFileCorrect = QFileDialog::getOpenFileName();
+    pathCorrectFile = QFileDialog::getOpenFileName();
 #endif
     if (pathCorrectFile.isEmpty()) {
         return;
     }
-    QVector<QPair<QString, QString> > vecPair;
-    CorrectWorker::readCorrectFile(&vecPair, pathCorrectFile);
-    Q_ASSERT(vecPair.size() > 0);
-
-    QStandardItemModel *model = new QStandardItemModel(ui->listViewCorrect);
-    for (const QPair<QString, QString> pair: vecPair) {
-        QStandardItem *item = new QStandardItem(pair.first);
-        item->setData(pair.second, Qt::UserRole+1);
-        model->appendRow(item);
-    }
-    ui->listViewCorrect->setModel(model);
+    ui->lineEditLoadCorrect->setText(pathCorrectFile);
+    updateListViewCorrect();
 }
 
 void Correct::on_pushButtonSaveCorrect_clicked()
@@ -70,7 +61,7 @@ void Correct::on_actionReset_CorrectFile_triggered()
         return;
     }
     CorrectWorker::resetCorrectFile(pathCorrectFile);
-    on_pushButtonLoadCorrect_clicked();
+    updateListViewCorrect();
     QMessageBox::information(ui->listViewCorrect, "", QString("The %1 file is already reseted").arg(QFileInfo(pathCorrectFile).fileName()));
 }
 
@@ -87,5 +78,20 @@ void Correct::on_actionMerge_CorrectFile_triggered()
 
     CorrectWorker::mergeCorrectFile(pathCorrectFile, pathAllBibleFile);
     QMessageBox::information(ui->listViewCorrect, "", QString("The %1 file is already merged").arg(QFileInfo(pathCorrectFile).fileName()));
+}
+
+void Correct::updateListViewCorrect()
+{
+    QVector<QPair<QString, QString> > vecPair;
+    CorrectWorker::readCorrectFile(&vecPair, pathCorrectFile);
+    Q_ASSERT(vecPair.size() > 0);
+
+    QStandardItemModel *model = new QStandardItemModel(ui->listViewCorrect);
+    for (const QPair<QString, QString> pair: vecPair) {
+        QStandardItem *item = new QStandardItem(pair.first);
+        item->setData(pair.second, Qt::UserRole+1);
+        model->appendRow(item);
+    }
+    ui->listViewCorrect->setModel(model);
 }
 

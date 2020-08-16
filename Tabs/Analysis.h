@@ -30,7 +30,7 @@ protected:
     virtual void createConnects();
 
 private slots:
-    void setSettingsAnalysis();
+    int setSettingsAnalysis();
     void startClicked();
     void refreshModel(QList<QStandardItem *> listItems);
     void refreshInfo(int quantityUrls, QString foundVerses);

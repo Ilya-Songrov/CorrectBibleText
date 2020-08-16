@@ -31,27 +31,28 @@ void Analysis::createConnects()
     threadAnalyze.start();
 }
 
-void Analysis::setSettingsAnalysis()
+int Analysis::setSettingsAnalysis()
 {
     DialogSettingsAnalysis dialogSettings;
-    if (dialogSettings.exec() == QDialog::Rejected) {
-        return;
+    int dialogCode = dialogSettings.exec();
+    if (dialogCode == QDialog::Rejected) {
+        return dialogCode;
     }
     fileAllBible = dialogSettings.getAllBibleFilePath();
     fileUrls = dialogSettings.getFileUrls();
     webTextCodec = dialogSettings.getWebTextCodec();
     fileOutputCorrect = dialogSettings.getOutputFilePath();
+    return dialogCode;
 }
 
 void Analysis::startClicked()
 {
-//    if (ui->lineEditAnalysisUrl->text().isEmpty()) {
-//        fileAllBible = QFileDialog::getOpenFileName();
-//        if (fileAllBible.isEmpty()) {
-//            QMessageBox::information(ui->listViewAnalysis, "", "Please enter url or file with urls");
-//            return;
-//        }
-//    }
+    if (fileAllBible.isEmpty() || fileUrls.isEmpty() || webTextCodec.isEmpty() || fileOutputCorrect.isEmpty()) {
+        int dialogCode = setSettingsAnalysis();
+        if (dialogCode == QDialog::Rejected) {
+            return;
+        }
+    }
 #ifdef QT_DEBUG
     fileAllBible = Path::fileAllBibleJsonText_GETBIBLE;
     webTextCodec = "Windows-1251";

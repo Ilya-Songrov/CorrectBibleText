@@ -30,5 +30,7 @@ public slots:
     void on_actionReset_CorrectFile_triggered();
     void on_actionMerge_CorrectFile_triggered();
 
+private:
+    void updateListViewCorrect();
 };
 
