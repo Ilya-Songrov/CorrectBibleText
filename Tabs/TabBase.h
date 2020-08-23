@@ -11,6 +11,6 @@ public:
     explicit TabBase(QObject *parent = nullptr);
 
 protected:
-    virtual void createConnects() = 0;
+    virtual void setGeneralSettings() = 0;
 };
 

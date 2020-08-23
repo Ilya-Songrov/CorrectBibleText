@@ -5,10 +5,10 @@ Content::Content(Ui::MainWindow *ui, QObject *parent) :
     TabBase(parent)
   , ui(ui)
 {
-    createConnects();
+    setGeneralSettings();
 }
 
-void Content::createConnects()
+void Content::setGeneralSettings()
 {
     connect(ui->pushButtonGenerateAllContent, &QPushButton::clicked, this, &Content::on_pushButtonGenerateAllContent_clicked);
     connect(ui->pushButtonRemoveAllContent, &QPushButton::clicked, this, &Content::on_pushButtonRemoveAllContent_clicked);

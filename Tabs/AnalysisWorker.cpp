@@ -2,28 +2,16 @@
 
 AnalysisWorker::AnalysisWorker(QObject *parent) : QObject(parent)
 {
-
+    connect(this, &AnalysisWorker::requestNextUrl, this, &AnalysisWorker::requestAllUrls);
 }
 
-void AnalysisWorker::start(const QUrl url, const QString fileAllBible, const QString webTextCodec)
+void AnalysisWorker::start(const QString fileUrls, const QString fileAllBible, const QString webTextCodec)
 {
+    abort = false;
     this->webTextCodec = webTextCodec;
     readFileAllBible(fileAllBible);
-#ifdef QT_DEBUG
-    QByteArray arr;
-    FileWorker::readFile(&arr, "/media/songrov/1478E91378E8F500/IlyaFolder/Songrov_Ilya/Programming/QtProjects/"
-                               "CorrectBibleText/CorrectBibleText/Resource/testBibile.txt");
-    strReply = arr;
-    parseReply();
-    emit analysisIsFinished();
-    return;
-#endif
-    if (!url.isLocalFile()) {
-        vecUrls.append(url.toString());
-        requestAllUrls();
-        return;
-    }
-    QFile file(url.toLocalFile());
+
+    QFile file(fileUrls);
     if (!file.open(QFile::ReadOnly)) {
         const QString message = "Error, file is not open " + file.fileName();
         qWarning() << message << Qt::endl;
@@ -48,6 +36,11 @@ void AnalysisWorker::start(const QUrl url, const QString fileAllBible, const QSt
     }
     file.close();
     requestAllUrls();
+}
+
+void AnalysisWorker::slotAbort()
+{
+    this->abort = true;
 }
 
 void AnalysisWorker::readFileAllBible(const QString &fileAllBible)
@@ -79,7 +72,7 @@ void AnalysisWorker::parseReply()
 
 void AnalysisWorker::requestAllUrls()
 {
-    if (vecUrls.isEmpty()) {
+    if (vecUrls.isEmpty() || abort) {
         emit analysisIsFinished();
         return;
     }
@@ -101,6 +94,7 @@ void AnalysisWorker::slotSSLErrors(QNetworkReply *reply, const QList<QSslError> 
 {
     qDebug() << "QSslError: " << errors << Qt::endl;
     reply->ignoreSslErrors(errors);
+    emit requestNextUrl();
 }
 
 void AnalysisWorker::slotReplyAnalyze(QNetworkReply *reply)
@@ -118,8 +112,9 @@ void AnalysisWorker::slotReplyAnalyze(QNetworkReply *reply)
     reply->deleteLater();
     if(reply->error() != QNetworkReply::NoError){
         qWarning() << "reply->error()" << reply->error() << Qt::endl;
+        emit requestNextUrl();
         return;
     }
     parseReply();
-    requestAllUrls();
+    emit requestNextUrl();
 }

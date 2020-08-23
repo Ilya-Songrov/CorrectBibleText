@@ -21,7 +21,7 @@ public:
     explicit Correct(Ui::MainWindow *ui, QObject *parent = nullptr);
 
 protected:
-    virtual void createConnects();
+    virtual void setGeneralSettings();
 
 public slots:
     void on_pushButtonLoadCorrect_clicked();

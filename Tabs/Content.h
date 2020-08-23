@@ -18,7 +18,7 @@ public:
     Content(Ui::MainWindow *ui, QObject *parent = nullptr);
 
 protected:
-    virtual void createConnects();
+    virtual void setGeneralSettings();
 
 private slots:
     void on_pushButtonGenerateAllContent_clicked();

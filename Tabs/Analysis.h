@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include <QThread>
+#include <QSettings>
 
 #include "TabBase.h"
 #include "Dialogs/DialogSettingsAnalysis.h"
@@ -18,17 +19,22 @@ class Analysis : public TabBase
     QThread threadAnalyze;
     QStandardItemModel *model;
     Ui::MainWindow *ui;
+    QSettings settings;
     QString fileAllBible;
     QString fileUrls;
     QString webTextCodec;
     QString fileOutputCorrect;
+    int rangeProgressBar;
 public:
     explicit Analysis(Ui::MainWindow *ui, QObject *parent = nullptr);
     ~Analysis();
 
 protected:
-    virtual void createConnects();
+    virtual void setGeneralSettings();
 
+private:
+    void saveSettings();
+    void loadPreviousSettings();
 private slots:
     int setSettingsAnalysis();
     void startClicked();
@@ -38,6 +44,8 @@ private slots:
     void saveResult();
 
 signals:
-    void startWorker(const QUrl url, const QString fileAllBible, const QString webTextCodec);
+    void startWorker(const QString fileUrls, const QString fileAllBible, const QString webTextCodec);
+    void abortWorker();
+
 };
 

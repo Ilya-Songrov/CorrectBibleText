@@ -18,11 +18,13 @@ class AnalysisWorker : public QObject
     QVector<QString> vecUrls;
     QString strReply;
     QString webTextCodec;
+    bool abort;
 public:
     explicit AnalysisWorker(QObject *parent = nullptr);
 
 public slots:
-    void start(const QUrl url, const QString fileAllBible, const QString webTextCodec);
+    void start(const QString fileUrls, const QString fileAllBible, const QString webTextCodec);
+    void slotAbort();
 
 private:
     void readFileAllBible(const QString &fileAllBible);
@@ -36,5 +38,6 @@ signals:
     void analysisIsFinished(QString message = "");
     void analysisUpdated(QList<QStandardItem *> listItems);
     void analysisInfo(int quantityUrls, QString foundVerses);
+    void requestNextUrl();
 };
 

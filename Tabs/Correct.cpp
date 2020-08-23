@@ -5,22 +5,24 @@ Correct::Correct(Ui::MainWindow *ui, QObject *parent) :
     TabBase(parent)
   , ui(ui)
 {
-    createConnects();
+    setGeneralSettings();
 }
 
-void Correct::createConnects()
+void Correct::setGeneralSettings()
 {
     connect(ui->pushButtonLoadCorrect, &QPushButton::clicked, this, &Correct::on_pushButtonLoadCorrect_clicked);
     connect(ui->pushButtonSaveCorrect, &QPushButton::clicked, this, &Correct::on_pushButtonSaveCorrect_clicked);
     connect(ui->listViewCorrect, &QListView::clicked, this, &Correct::onClickedViewCorrect);
     connect(ui->actionReset_Correct_File, &QAction::triggered, this, &Correct::on_actionReset_CorrectFile_triggered);
     connect(ui->actionMerge_Correct_File, &QAction::triggered, this, &Correct::on_actionMerge_CorrectFile_triggered);
+    connect(ui->actionMerge_Correct_File, &QAction::triggered, this, &Correct::on_actionMerge_CorrectFile_triggered);
+    ui->textEditCorrectVerse->setFontPointSize(18);
 }
 
 void Correct::on_pushButtonLoadCorrect_clicked()
 {
 #ifdef QT_DEBUG
-    pathCorrectFile = "../CorrectBibleText/Resource/ResultAnalysis.json";
+    pathCorrectFile = "../CorrectBibleText/Resource/Analysis/CorrectBibleSynodal.json";
 #else
     pathCorrectFile = QFileDialog::getOpenFileName();
 #endif
