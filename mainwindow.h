@@ -23,7 +23,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void slotTabBarChanged(int index);
+    void slotTabWidgetChanged(int index);
 
 private:
     void setSettings();

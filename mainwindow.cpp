@@ -18,7 +18,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::slotTabBarChanged(int index)
+void MainWindow::slotTabWidgetChanged(int index)
 {
     if (index == 0 && !correct) {
         correct = new Correct(ui, this);
@@ -39,9 +39,9 @@ void MainWindow::setSettings()
     ui->tabWidget->widget(2)->setStyleSheet("background-color: rgba(50, 85, 7, 150);");
 
     connect(ui->actionExitApp, &QAction::triggered, qApp, &QApplication::quit);
-    connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::slotTabBarChanged);
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::slotTabWidgetChanged);
     const int currentTab { 0 };
     ui->tabWidget->setCurrentIndex(currentTab);
-    slotTabBarChanged(currentTab);
+    slotTabWidgetChanged(currentTab);
 }
 

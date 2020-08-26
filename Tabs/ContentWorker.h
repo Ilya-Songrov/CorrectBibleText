@@ -12,6 +12,7 @@
 #include <QNetworkReply>
 #include <QUrlQuery>
 #include <QUrl>
+#include <QTextCodec>
 
 #include "Data.h"
 #include "FileWorker.h"
@@ -31,21 +32,14 @@ class ContentWorker
         CatholicEpistles = 65,
         Apocalypse = 66,
     };
-    static QNetworkAccessManager mngr;
 public:
-    enum ProviderContent {
-        GETBIBLE_NET, // пока используем этот вариант
-        GITHUB_BIBLE_USFM2JSON_RUSLAN_KAZAKOV, // ошибки с новым заветом
-        GITHUB_BIBLE_XML_AND_JSON_THIAGO_BODRUK, // здесь много ошибок
-        BIBLEONLINE_RU, // здесь вообще не доделанное API
-    };
     enum Standard {
         Western,
         EasternSynodal,
     };
 
     explicit ContentWorker();
-    static void generateContentStandart(const ContentWorker::Standard requiredStandart, const ProviderContent providerContent);
+    static void generateContentStandart(const ContentWorker::Standard requiredStandart);
     static void removeAllContent();
     static void getVectorVersesAllBible(QVector<QPair<QString, QString> > *vecPair, const QString &pathFileAllBible);
 private:
@@ -57,34 +51,18 @@ private:
     static void testGetIndexBook();
 
     static void generateContent_Photos();
-    static void generateNewNameFolder_Photos();
     static QStringList getListFileInDirectory(const QString &dir);
     static void fillPhotos(QJsonObject *objBook, const QString &pathDir);
 
-    static void generateContent_Folders(const ProviderContent providerContent, const bool onlyRemove = false);
-    static void generateContent_Info(const QString &fileOld, const QString &fileNew, const ContentWorker::Standard requiredStandart);
-    static void generateContent_Info_BODRUK(const ContentWorker::Standard requiredStandart);
-    static void generateContent_Info_ONLINE(const ContentWorker::Standard requiredStandart);
-    static void generateContent_Info_KAZAKOV(const ContentWorker::Standard requiredStandart);
+    static void generateContent_Folders(const bool onlyRemove = false);
+    static void generateAllBibleJsonFromTxt_GETBIBLE();
     static void generateContent_Info_GETBIBLE(const ContentWorker::Standard requiredStandart);
-    static void generateContent_JsonText(const QString &pathFrom, const QString &dirOld, const QString &dirNew,
-                                         const ContentWorker::Standard currentStandart, const ContentWorker::Standard requiredStandart);
-    static void generateContent_JsonText_BODRUK(const ContentWorker::Standard requiredStandart);
-    static void generateContent_JsonText_ONLINE(const ContentWorker::Standard requiredStandart);
-    static void generateContent_JsonText_KAZAKOV(const ContentWorker::Standard requiredStandart);
     static void generateContent_JsonText_GETBIBLE(const ContentWorker::Standard requiredStandart);
-    static void generateContent_TwoArraysBooks(const ProviderContent providerContent);
+    static void generateContent_JsonText(const QString &pathFrom, const QString &dirWhere,
+                        const ContentWorker::Standard currentStandart, const ContentWorker::Standard requiredStandart);
 
     static QString getAbbrev(const int index, const ContentWorker::Standard requiredStandart, const QString &language = "ru");
     static QVector<QString> getVectorFamilyBooks(const FamilyBooks familyBooks, const QString &language = "ru");
     static QString getNameFamilyBooks(const FamilyBooks familyBooks, const QString &language = "ru");
-    static void getOnlineBookList();
-    static void getOnlineBible();
-    static void generateValidJson_KAZAKOV();
-    static void generateJsonFromTxt_GETBIBLE();
-    static void sendGetRequest(const QString &urlStr, const QByteArray &paramJson,
-                               std::function<void (QNetworkReply *)> funcSlotReply);
-    static void slotSSLErrors(QNetworkReply *reply, const QList<QSslError> &errors);
-    static void slotGetReply(QNetworkReply* reply);
 };
 

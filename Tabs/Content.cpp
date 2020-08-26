@@ -21,7 +21,7 @@ void Content::on_pushButtonGenerateAllContent_clicked()
     if (button == QMessageBox::StandardButton::No) {
         return;
     }
-    ContentWorker::generateContentStandart(ContentWorker::Standard::EasternSynodal, ContentWorker::ProviderContent::GETBIBLE_NET);
+    ContentWorker::generateContentStandart(ContentWorker::Standard::EasternSynodal);
     QMessageBox::information(ui->pushButtonGenerateAllContent, "", "Content has generated");
 }
 
